@@ -1,0 +1,80 @@
+<form>
+  <label>Threat Search</label>
+  <search id="bs_single_values">
+    <query>
+      `kaspersky_index` action="$action_tk$" dest="$dest_tk$" | stats dc(dest) dc(user) dc(signature) | rename dc(*) AS *
+    </query>
+  </search>
+  <fieldset submitButton="true">
+    <input type="text" token="dest_tk">
+      <label>Asset</label>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="dropdown" token="action_tk">
+      <label>Action</label>
+      <choice value="*">All</choice>
+      <choice value="allowed">Allowed</choice>
+      <choice value="deferred">Deferred</choice>
+      <choice value="blocked">Blocked</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+    </input>
+    <input type="time" token="timerange">
+      <label></label>
+      <default>
+        <earliest>0</earliest>
+        <latest></latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <single>
+        <search base="bs_single_values">
+          <query>| fields dest</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="underLabel">Distinct Assets</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search base="bs_single_values">
+          <query>| fields user</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="underLabel">Distinct Users</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search base="bs_single_values">
+          <query>| fields signature</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="underLabel">Distinct Signatures</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>`kaspersky_index` dest="$dest_tk$" action="$action_tk$" tag="malware" tag="attack"
+| table _time dest user category action signature file_path</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <format type="color" field="action">
+          <colorPalette type="map">{"allowed":#53A051,"deferred":#F8BE34,"blocked":#DC4E41}</colorPalette>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>
