@@ -1,0 +1,85 @@
+<form>
+  <init>
+    <set token="test">false</set>
+  </init>
+  <label>Kaspersky Overview</label>
+  <fieldset submitButton="true" autoRun="true">
+    <input type="time" token="timerange">
+      <label></label>
+      <default>
+        <earliest>0</earliest>
+        <latest></latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <single>
+        <search>
+          <query>`kaspersky_index` | stats dc(host)</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">Reporting Hosts</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>`kaspersky_index` | stats dc(signature)</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="underLabel">Distinct Signatures Detected</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>`kaspersky_index` | stats dc(dest)</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="underLabel">Distinct Clients</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Deployment Distribution</title>
+      <chart>
+        <search>
+          <query>`kaspersky_index` 
+| top dest_product_dis_version 
+| rename dest_product_dis_version AS "client version"</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top Signatures</title>
+      <table>
+        <search>
+          <query>`kaspersky_index` | top 10 signature</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>
