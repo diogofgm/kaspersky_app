@@ -1,0 +1,122 @@
+<form>
+  <label>Threat Overview</label>
+  <search id="bs_single_value">
+    <query>
+      index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | stats count by log_type
+    </query>
+    <earliest>$timerange.earliest$</earliest>
+    <latest>$timerange.latest$</latest>
+  </search>
+  <fieldset submitButton="true" autoRun="true">
+    <input type="time" token="timerange">
+      <label></label>
+      <default>
+        <earliest>0</earliest>
+        <latest></latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <single>
+        <search base="bs_single_value">
+          <query>
+            | search log_type=GNRL_EV_VIRUS_FOUND 
+            | fields count
+          </query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">Virus Found</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search base="bs_single_value">
+          <query>
+            | search log_type=GNRL_EV_ATTACK_DETECTED 
+            | fields count
+          </query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">Attacks detected</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search base="bs_single_value">
+          <query>
+            | search log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND 
+            | fields count
+          </query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">Suspicious Objects Found</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Actions over time</title>
+      <chart>
+        <search>
+          <query>index="epav" signature="*" | timechart count by action</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Top Destinations</title>
+      <table>
+        <search>
+          <query>index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top dest | fields - percent</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Top Users</title>
+      <table>
+        <search>
+          <query>index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top user | fields - percent</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Top Signatures</title>
+      <table>
+        <search>
+          <query>index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top signature | fields - percent</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</form>
