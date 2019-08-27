@@ -87,8 +87,10 @@
           <latest>$timerange.latest$</latest>
         </search>
         <option name="count">10</option>
-        <option name="drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
+        <option name="drilldown">cell</option>
+        <drilldown>
+          <link target="_blank">/app/kaspersky_app/kaspersky_host_details?form.host_tk=$row.dest$</link>
+        </drilldown>
       </table>
     </panel>
     <panel>
