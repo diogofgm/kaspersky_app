@@ -5,7 +5,7 @@
       `kaspersky_index` action="$action_tk$" dest="$dest_tk$" | stats dc(dest) dc(user) dc(signature) | rename dc(*) AS *
     </query>
   </search>
-  <fieldset submitButton="true">
+  <fieldset submitButton="true" autoRun="true">
     <input type="text" token="dest_tk">
       <label>Asset</label>
       <default>*</default>
