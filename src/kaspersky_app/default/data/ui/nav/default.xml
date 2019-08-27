@@ -1,13 +1,15 @@
 <nav search_view="search" color="#027362">
   <view name="kaspersky_overview" default='true' />
   <collection label="Hosts">
-    <view source="all" match="kaspersky_host" />
+    <view name="kaspersky_host_overview" />
+    <view name="kaspersky_host_details" />
   </collection>
   <collection label="Threats">
-    <view source="all" match="kaspersky_threat" />
+    <view name="kaspersky_threat_overview" />
+    <view name="kaspersky_threat_search" />
   </collection>
   <collection label="System">
-    <view source="all" match="kaspersky_system" />
+    <view name="kaspersky_system_overview" />
   </collection>
   <collection label="Other">
     <view name="search" />
@@ -17,6 +19,6 @@
     <view name="dashboards" />
   </collection>
   <collection label="Help">
-    <view source="all" match="kaspersky_help" />
+    <view name="kaspersky_help" />
   </collection>
 </nav>
