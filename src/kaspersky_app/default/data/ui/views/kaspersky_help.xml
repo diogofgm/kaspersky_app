@@ -1,0 +1,65 @@
+<dashboard>
+  <label>Help</label>
+  <row>
+    <panel>
+      <single>
+        <search>
+          <query>| tstats count where `kaspersky_index`
+| eval show = if(count &gt; 0, "OK", "NOK") 
+| fields show</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="colorMode">block</option>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0xdc4e41","0x53a051"]</option>
+        <option name="rangeValues">[0]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">Indexed Events</option>
+        <option name="useColors">0</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>| inputlookup kaspersky_assets.csv
+| stats count
+| eval show = if(count &gt; 0, "OK", "NOK") 
+| fields show</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="underLabel">Assets Lookup File</option>
+        <option name="useColors">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>| rest /services/apps/local/TA-kaspersky 
+| stats count
+| eval show = if(count &gt; 0, "OK", "NOK") 
+| fields show</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">Kaspersky Add-on Installed</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <h1>Support</h1>
+        <h2>Bugs &amp; Support Issues</h2>
+        <p>You can file bug reports on our <a href="https://github.com/diogofgm/kaspersky_app/issues">GitHub issue tracker</a>, and they will be addressed as soon as possible.</p>
+        <p><strong>Support is a volunteer effort</strong>, and there is no guaranteed response time.</p>
+      </html>
+    </panel>
+  </row>
+</dashboard>
