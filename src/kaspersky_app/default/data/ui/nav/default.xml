@@ -10,6 +10,7 @@
     <view source="all" match="kaspersky_system" />
   </collection>
   <collection label="Other">
+    <view name="search" />
     <view name="data_models" />
     <view name="reports" />
     <view name="alerts" />
