@@ -1,3 +1,71 @@
-<dashboard>
-  <label>kaspersky_asset_details</label>
-</dashboard>
+<form>
+  <init>
+    <set token="dest_name_tk"></set>
+    <set token="dest_ip_tk"></set>
+    <set token="last_seen_tk"></set>
+  </init>
+  <label>Host Details</label>
+  <search id="bs_host_details">
+    <query>
+      |inputlookup kaspersky_assets.csv | search dest_name = "$host_tk$" OR dest_ip = "$host_tk$" | eval last_seen = strftime(last_seen, "%Y-%m-%d %H:%M:%S")
+    </query>
+    <finalized>
+      <set token="dest_name_tk">$result.dest_name$</set>
+      <set token="dest_ip_tk">$result.dest_ip$</set>
+      <set token="last_seen_tk">$result.last_seen$</set>
+    </finalized>
+  </search>
+  <fieldset submitButton="true" autoRun="true">
+    <input type="text" token="host_tk">
+      <label>Host</label>
+    </input>
+    <input type="time" token="timerange">
+      <label></label>
+      <default>
+        <earliest>0</earliest>
+        <latest></latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <html>
+        <h2>Host details</h2>
+        <p>
+          <strong>Host:</strong> $dest_name_tk$</p>
+        <p>
+          <strong>Last known ip:</strong> $dest_ip_tk$</p>
+        <p>
+          <strong>Last seen:</strong> $last_seen_tk$</p>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Events</title>
+      <chart>
+        <search>
+          <query>`kaspersky_index` dest=$host_tk$
+| timechart count by log_type</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <event>
+        <search>
+          <query>`kaspersky_index` dest="$host_tk$"</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="list.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </event>
+    </panel>
+  </row>
+</form>
