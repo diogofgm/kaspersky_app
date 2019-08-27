@@ -1,0 +1,74 @@
+<dashboard>
+  <label>Hosts Overview</label>
+  <row>
+    <panel>
+      <single>
+        <search>
+          <query>`kaspersky_index` | stats dc(dest)</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="drilldown">none</option>
+        <option name="linkView">search</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="showSparkline">1</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="underLabel">Distinct Hosts</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>`kaspersky_index` tag=malware tag=attack
+| stats dc(dest)</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="underLabel">Affected Hosts</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <search>
+          <query>index=kaspersky</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Events</title>
+      <table>
+        <search>
+          <query>`kaspersky_index` tag=malware tag=attack
+| stats Count by _time dest action signature 
+| rename dest AS Host action AS Action signature AS Signature</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+        <format type="color" field="Action">
+          <colorPalette type="map">{"blocked":#53A051,"deferred":#F8BE34,"allowed":#DC4E41}</colorPalette>
+        </format>
+        <drilldown>
+          <link target="_blank">search?q=%60kaspersky_index%60%20dest=%22$row.Host$%22%20signature=%22$row.Signature$%22&amp;earliest=0&amp;latest=</link>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+</dashboard>
