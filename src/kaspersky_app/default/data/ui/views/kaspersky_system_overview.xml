@@ -1,3 +1,29 @@
-<dashboard>
+<form>
   <label>System Overview</label>
-</dashboard>
+  <fieldset submitButton="true" autoRun="true">
+    <input type="time" token="timerange">
+      <label></label>
+      <default>
+        <earliest>0</earliest>
+        <latest></latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Client Versions</title>
+      <chart>
+        <search>
+          <query>`kaspersky_index` 
+| top dest_product_dis_version 
+| rename dest_product_dis_version AS "client version"</query>
+          <earliest>$timerange.earliest$</earliest>
+          <latest>$timerange.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+</form>
