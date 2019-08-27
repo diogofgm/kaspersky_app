@@ -27,7 +27,7 @@
       </default>
     </input>
   </fieldset>
-  <row>
+  <row depends="$dest_name_tk$">
     <panel>
       <html>
         <h2>Host details</h2>
@@ -40,22 +40,33 @@
       </html>
     </panel>
   </row>
-  <row>
+  <row rejects="$show_events$">
+    <panel>
+      <html>
+        <h1>No events for this host in the selected time range.</h1>
+      </html>
+    </panel>
+  </row>
+  <row depends="$show_events$">
     <panel>
       <title>Events</title>
       <chart>
         <search>
-          <query>`kaspersky_index` dest=$host_tk$
-| timechart count by log_type</query>
+          <query>`kaspersky_index` dest=$host_tk$ | timechart count by log_type</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
+          <finalized>
+            <condition match="'job.resultCount' != 0">
+              <set token="show_events">true</set>
+            </condition>
+          </finalized>
         </search>
         <option name="charting.chart">line</option>
         <option name="charting.drilldown">none</option>
       </chart>
     </panel>
   </row>
-  <row>
+  <row depends="$show_events$">
     <panel>
       <event>
         <search>
