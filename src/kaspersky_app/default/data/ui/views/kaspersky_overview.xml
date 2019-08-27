@@ -23,7 +23,7 @@
         <option name="drilldown">none</option>
         <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
         <option name="refresh.display">progressbar</option>
-        <option name="underLabel">Reporting Hosts</option>
+        <option name="underLabel">Reporting Servers</option>
       </single>
     </panel>
     <panel>
@@ -49,23 +49,6 @@
         <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
         <option name="underLabel">Distinct Clients</option>
       </single>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <title>Deployment Distribution</title>
-      <chart>
-        <search>
-          <query>`kaspersky_index` 
-| top dest_product_dis_version 
-| rename dest_product_dis_version AS "client version"</query>
-          <earliest>$timerange.earliest$</earliest>
-          <latest>$timerange.latest$</latest>
-        </search>
-        <option name="charting.chart">pie</option>
-        <option name="charting.drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-      </chart>
     </panel>
   </row>
   <row>
