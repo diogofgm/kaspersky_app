@@ -1,11 +1,14 @@
-# Splunk Files and Folders
+# Splunk files and folders
 local/
 local.meta
 addon_builder.conf
 
-# MacOS Files
+# App specific files
+kaspersky_assets.csv
+
+# MacOS files
 .DS_Store
 
-# Other 
+# Other files and folders
 .vscode
 build/
