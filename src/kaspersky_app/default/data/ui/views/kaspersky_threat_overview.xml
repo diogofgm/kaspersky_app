@@ -2,7 +2,7 @@
   <label>Threat Overview</label>
   <search id="bs_single_value">
     <query>
-      index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | stats count by log_type
+      `kaspersky_index` tag=malware tag=attack | stats count by log_type
     </query>
     <earliest>$timerange.earliest$</earliest>
     <latest>$timerange.latest$</latest>
@@ -65,7 +65,7 @@
       <title>Actions over time</title>
       <chart>
         <search>
-          <query>index="epav" signature="*" | timechart count by action</query>
+          <query>`kaspersky_index` signature="*" | timechart count by action</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
           <sampleRatio>1</sampleRatio>
@@ -82,7 +82,7 @@
       <title>Top Destinations</title>
       <table>
         <search>
-          <query>index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top dest | fields - percent</query>
+          <query>`kaspersky_index` log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top dest | fields - percent</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
@@ -95,7 +95,7 @@
       <title>Top Users</title>
       <table>
         <search>
-          <query>index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top user | fields - percent</query>
+          <query>`kaspersky_index` log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top user | fields - percent</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
@@ -108,7 +108,7 @@
       <title>Top Signatures</title>
       <table>
         <search>
-          <query>index="epav" log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top signature | fields - percent</query>
+          <query>`kaspersky_index` log_type=GNRL_EV_VIRUS_FOUND OR log_type=GNRL_EV_ATTACK_DETECTED OR log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND | top signature | fields - percent</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
           <sampleRatio>1</sampleRatio>
