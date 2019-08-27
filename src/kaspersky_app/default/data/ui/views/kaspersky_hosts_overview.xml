@@ -1,11 +1,11 @@
 <dashboard>
-  <label>Hosts overview</label>
+  <label>Hosts Overview</label>
   <row>
     <panel>
       <title>Hosts</title>
       <single>
         <search>
-          <query>index=kaspersky | stats dc(host)</query>
+          <query>`kaspersky_index` | stats dc(host)</query>
           <earliest>-60m@m</earliest>
           <latest>now</latest>
         </search>
@@ -26,7 +26,7 @@
       <title>Clients</title>
       <single>
         <search>
-          <query>index=kaspersky | stats dc(src_ip)</query>
+          <query>`kaspersky_index`  | stats dc(src_ip)</query>
           <earliest>0</earliest>
           <latest></latest>
         </search>
@@ -36,7 +36,7 @@
     <panel>
       <single>
         <search>
-          <query>index=kaspersky</query>
+          <query>`kaspersky_index` </query>
           <earliest>0</earliest>
           <latest></latest>
         </search>
@@ -46,7 +46,7 @@
     <panel>
       <single>
         <search>
-          <query>index=kaspersky</query>
+          <query>`kaspersky_index` </query>
           <earliest>0</earliest>
           <latest></latest>
         </search>
@@ -59,7 +59,7 @@
       <title>Events</title>
       <chart>
         <search>
-          <query>index=kaspersky | timechart count by host</query>
+          <query>`kaspersky_index`  | timechart count by host</query>
           <earliest>-60m@m</earliest>
           <latest>now</latest>
         </search>
