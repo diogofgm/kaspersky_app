@@ -53,16 +53,17 @@
   </row>
   <row>
     <panel>
-      <title>Top Signatures</title>
-      <table>
+      <title>Events over time by type</title>
+      <chart>
         <search>
-          <query>`kaspersky_index` | top 10 signature</query>
+          <query>`kaspersky_index` | timechart count by log_type</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>
         </search>
-        <option name="drilldown">none</option>
+        <option name="charting.chart">line</option>
+        <option name="charting.drilldown">none</option>
         <option name="refresh.display">progressbar</option>
-      </table>
+      </chart>
     </panel>
   </row>
 </form>
