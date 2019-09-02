@@ -1,1 +1,26 @@
-This is where you put any scripts you want to add to this app.
+# Kaspersky App for Splunk
+
+## System requirements
+- Kaspersky Security Center 8 or newer 
+- Splunk 7.0 or newer
+- Kaspersky Add-on for Splunk
+
+## Installation
+Install the app on: 
+Search Heads - The app contains dashboards and reports
+
+
+## Configuration
+### Splunk
+- Edit the macro `kaspersky_index` and replace the index=epav with the index where you kaspersky events are stored
+
+## Troubleshooting
+
+
+## Support
+You can file bug reports on our [GitHub issue tracker](https://github.com/diogofgm/kaspersky_app/issues) and they will be addressed as soon as possible.
+**Support is a volunteer effort** and there is no guaranteed response time.
+
+
+## Online documentation
+http://kaspersky-app.readthedocs.org
