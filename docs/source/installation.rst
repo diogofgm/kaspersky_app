@@ -4,7 +4,7 @@ Installation
 
 Install the Kaspersky App for Splunk
 ====================================
-- Get the Swivel Kaspersky App for Splunk by downloading it from `Splunkbase`_ or browsing to it using the app browser within Splunk Web.
+- Get the Kaspersky App for Splunk by downloading it from `Splunkbase`_ or browsing to it using the app browser within Splunk Web.
 - Determine where and how to install this add-on in your deployment, using the tables on this page.
 - Perform any prerequisite steps before installing, if required and specified in the tables below.
 - Complete your installation.
