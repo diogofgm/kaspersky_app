@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "2.0.0", 
+  "info": {
+    "title": "Kaspersky", 
+    "id": {
+      "group": null, 
+      "name": "kaspersky_app", 
+      "version": "1.1.0"
+    }, 
+    "author": [
+      {
+        "name": "Diogo Silva", 
+        "email": "diogo.silva@devbusters.com", 
+        "company": "Devbusters"
+      }
+    ], 
+    "releaseDate": null, 
+    "description": "Kaspersky App for Splunk", 
+    "classification": {
+      "intendedAudience": "IT", 
+      "categories": [
+        "Security, Fraud & Compliance", 
+        "IT Operations"
+      ], 
+      "developmentStatus": "Production/Stable"
+    }, 
+    "commonInformationModels": null, 
+    "license": {
+      "name": "Apache License, Version 2.0", 
+      "text": "LICENSE", 
+      "uri": "http://www.apache.org/licenses/LICENSE-2.0"
+    }, 
+    "privacyPolicy": {
+      "name": null, 
+      "text": null, 
+      "uri": null
+    }, 
+    "releaseNotes": {
+      "name": "README", 
+      "text": "README", 
+      "uri": "https://kaspersky-app.readthedocs.io/en/latest/releasenotes.html"
+    }
+  }, 
+  "dependencies": {
+    "TA-kaspersky": {
+      "version": ">=0.1.0", 
+      "package": null, 
+      "optional": false, 
+      "targetOS": [
+        "*"
+      ]
+    }
+  }, 
+  "tasks": null, 
+  "inputGroups": null, 
+  "incompatibleApps": null, 
+  "platformRequirements": {
+    "splunk": {
+      "Enterprise": ">=7.0.0,<=7.3.2"
+    }
+  }, 
+  "supportedDeployments": [
+    "_standalone", 
+    "_distributed"
+  ], 
+  "targetWorkloads": null
+}
