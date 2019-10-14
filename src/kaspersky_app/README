@@ -12,7 +12,7 @@ Search Heads - The app contains dashboards and reports
 
 ## Configuration
 ### Splunk
-- Edit the macro `kaspersky_index` and replace the index=epav with the index where you kaspersky events are stored
+- Edit the macro `kaspersky_index` and replace index=epav with the index where you kaspersky events are stored.
 
 ## Troubleshooting
 
