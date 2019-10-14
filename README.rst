@@ -1,4 +1,4 @@
-Splunk App for Kaspersky
+Kaspersky App for Splunk
 ========================
 |appinspect-status| |docs|
 
@@ -11,7 +11,7 @@ https://kaspersky-app.readthedocs.io/en/latest/
 .. |appinspect-status| image:: https://img.shields.io/badge/AppIspect-passed-success.svg 
     :alt: build status
     :scale: 100%
-    :target: https://splunkbase.splunk.com/app/0000/
+    :target: https://splunkbase.splunk.com/app/4661/
 
 .. |docs| image:: https://readthedocs.org/projects/kaspersky-app/badge/?version=latest
     :alt: documentation status
