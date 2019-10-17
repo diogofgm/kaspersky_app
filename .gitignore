@@ -2,6 +2,7 @@
 local/
 local.meta
 addon_builder.conf
+tags.pre41.conf
 
 # App specific files
 kaspersky_assets.csv
