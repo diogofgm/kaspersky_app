@@ -41,9 +41,9 @@ jobs:
           pwd
           ls -la
           cd ${GITHUB_WORKSPACE}
-          mv package ana_TA_dve
+          mv package kaspersky_app
           mkdir dist
-          tar -zcvf dist/ana_TA_dve.tar.gz ana_TA_dve
+          tar -zcvf dist/kaspersky_app.tar.gz kaspersky_app
           cd dist
           ls -la
           pwd
@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: package-splunkbase
-          path: /home/runner/work/ana_TA_dve/ana_TA_dve/dist
+          path: /home/runner/work/kaspersky_app/kaspersky_app/dist
         if: always()
 
   # Run AppInspect CLI
