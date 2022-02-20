@@ -12,17 +12,17 @@ Install the Kaspersky App for Splunk
 
 Distributed deployments
 -----------------------
-Reference the tables below to determine where and how to install this app in a distributed deployment of Splunk Enterprise or any deployment for which you are using forwarders to get your data in. Depending on your environment, your preferences, and the requirements of the app, you may need to install the app in multiple places. 
+Reference the tables below to determine where and how to install this app in a distributed deployment of Splunk Enterprise or any deployment for which you are using forwarders to get your data in. Depending on your environment, your preferences, and the requirements of the app, you may need to install the app in multiple places.
 
 Where to install this app
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 Unless otherwise noted, all supported apps can be safely installed to all tiers of a distributed Splunk platform deployment. See `Where to install Splunk add-ons`_ in Splunk Add-ons for more information.
 
-This table provides a reference for installing this specific app to a distributed deployment of Splunk Enterprise. 
+This table provides a reference for installing this specific app to a distributed deployment of Splunk Enterprise.
 
 .. list-table::
    :header-rows: 1
-   
+
    * - Splunk platform component
      - Supported
      - Required
@@ -34,15 +34,15 @@ This table provides a reference for installing this specific app to a distribute
    * - Indexers
      - No
      - No
-     - 
+     -
    * - Heavy Forwarders
      - No
      - No
-     - 
+     -
    * - Universal Forwarders
      - No
      - No
-     - 
+     -
 
 
 Distributed deployment compatibility
@@ -51,7 +51,7 @@ This table provides a quick reference for the compatibility of this app with Spl
 
 .. list-table::
    :header-rows: 1
-   
+
    * - Distributed deployment feature
      - Supported
      - Comments
@@ -60,16 +60,16 @@ This table provides a quick reference for the compatibility of this app with Spl
      - You can install this app on a search head cluster for all search-time functionality.
    * - Indexer Clusters
      - No
-     - 
+     -
    * - Deployment Server
      - Yes
      - Supported for deploying via Deployment server
-     
+
 
 Installation walkthroughs
 -------------------------
 The Splunk Add-Ons manual includes an `Installing add-ons`_ guide that helps you successfully install any add-on to your Splunk platform.
-For a walkthrough of the installation procedure, follow the link that matches your deployment scenario: 
+For a walkthrough of the installation procedure, follow the link that matches your deployment scenario:
 
 - `Single-instance Splunk Enterprise`_
 - `Distributed Splunk Enterprise`_

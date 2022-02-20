@@ -5,7 +5,7 @@
       <single>
         <search>
           <query>| tstats count where `kaspersky_index`
-| eval show = if(count &gt; 0, "OK", "NOK") 
+| eval show = if(count &gt; 0, "OK", "NOK")
 | fields show</query>
           <earliest>0</earliest>
           <latest></latest>
@@ -24,7 +24,7 @@
         <search>
           <query>| inputlookup kaspersky_assets.csv
 | stats count
-| eval show = if(count &gt; 0, "OK", "NOK") 
+| eval show = if(count &gt; 0, "OK", "NOK")
 | fields show</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>
@@ -38,9 +38,9 @@
     <panel>
       <single>
         <search>
-          <query>| rest /services/apps/local/TA-kaspersky 
+          <query>| rest /services/apps/local/TA-kaspersky
 | stats count
-| eval show = if(count &gt; 0, "OK", "NOK") 
+| eval show = if(count &gt; 0, "OK", "NOK")
 | fields show</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>

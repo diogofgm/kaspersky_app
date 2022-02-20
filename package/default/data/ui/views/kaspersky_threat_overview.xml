@@ -21,7 +21,7 @@
       <single>
         <search base="bs_single_value">
           <query>
-            | search log_type=GNRL_EV_VIRUS_FOUND 
+            | search log_type=GNRL_EV_VIRUS_FOUND
             | fields count
           </query>
         </search>
@@ -35,7 +35,7 @@
       <single>
         <search base="bs_single_value">
           <query>
-            | search log_type=GNRL_EV_ATTACK_DETECTED 
+            | search log_type=GNRL_EV_ATTACK_DETECTED
             | fields count
           </query>
         </search>
@@ -49,7 +49,7 @@
       <single>
         <search base="bs_single_value">
           <query>
-            | search log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND 
+            | search log_type=GNRL_EV_SUSPICIOUS_OBJECT_FOUND
             | fields count
           </query>
         </search>

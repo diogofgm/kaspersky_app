@@ -14,8 +14,8 @@
       <title>Client Versions</title>
       <chart>
         <search>
-          <query>`kaspersky_index` 
-| top dest_product_dis_version 
+          <query>`kaspersky_index`
+| top dest_product_dis_version
 | rename dest_product_dis_version AS "client version"</query>
           <earliest>$timerange.earliest$</earliest>
           <latest>$timerange.latest$</latest>

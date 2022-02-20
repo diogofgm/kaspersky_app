@@ -1,12 +1,12 @@
 # Kaspersky App for Splunk
 
 ## System requirements
-- Kaspersky Security Center 8 or newer 
+- Kaspersky Security Center 8 or newer
 - Splunk 7.0 or newer
 - Kaspersky Add-on for Splunk
 
 ## Installation
-Install the app on: 
+Install the app on:
 Search Heads - The app contains dashboards and reports
 
 

@@ -54,7 +54,7 @@
       <table>
         <search>
           <query>`kaspersky_index` tag=malware tag=attack
-| stats Count by _time dest action signature 
+| stats Count by _time dest action signature
 | rename dest AS Host action AS Action signature AS Signature</query>
           <earliest>0</earliest>
           <latest></latest>
